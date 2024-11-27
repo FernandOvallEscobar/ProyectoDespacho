@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-title class="ion-text-center">
+    <h1>Despachos Pinturas Kolor</h1>
+  </ion-title>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card-header class="ion-text-center">
+    <ion-card-title><h2>Agregar jefe zonal</h2></ion-card-title>
+  </ion-card-header>
+  <ion-card-content class="ion-text-center">
+    <ion-icon name="man" size="large"></ion-icon>
+  </ion-card-content>
+
+  <ion-card>
+    <ion-input [(ngModel)]="nombre" label="Nombre" label-placement="floating" fill="solid" placeholder="Nombre"></ion-input>
+    <ion-input [(ngModel)]="apellido" label="Apellido" label-placement="floating" fill="solid" placeholder="Apellido"></ion-input>
+    <ion-input [(ngModel)]="correo" label="Correo" label-placement="floating" fill="solid" type="email" placeholder="Correo electrónico"></ion-input>
+    <ion-input [(ngModel)]="telefono" label="Teléfono" label-placement="floating" fill="solid" type="tel" placeholder="Número de teléfono"></ion-input>
+    <ion-input [(ngModel)]="fecha" label="Fecha actual" label-placement="floating" fill="solid" type="date"></ion-input>
+  
+    <ion-button (click)="guardar()" expand="block">Guardar</ion-button>
+  </ion-card>
+  
+
+</ion-content>

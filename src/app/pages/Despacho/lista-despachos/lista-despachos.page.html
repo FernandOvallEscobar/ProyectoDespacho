@@ -1,0 +1,84 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      <h1>Despachos Pinturas Kolor</h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  
+      <ion-card-header class="ion-text-center">
+        <ion-card-title><h2>Lista de despachos</h2></ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="ion-text-center">
+        <ion-icon name="cube" size="large"></ion-icon>
+        <br>
+        <ion-button (click)="AgregarDespacho()" fill="solid" size="small">Agregar</ion-button>
+      </ion-card-content>
+    
+
+    <!--Lista-->
+    <ion-list lines="inset" *ngFor="let despacho of despachos; let i = index">
+      <ion-card >
+        <ion-card-title class="ion-text-center"><h3>Despacho n° {{despacho.id}}</h3></ion-card-title>
+        <ion-item class="ion-text-center">
+          <ion-label >Nombre:</ion-label>
+          <ion-label>{{despacho.nombre}}</ion-label>
+          <ion-button color="success" expand="block" fill="solid" size="small">Editar</ion-button>
+        </ion-item>
+        <ion-item class="ion-text-center">
+          <ion-label >Fandeck:</ion-label>
+          <ion-label >{{despacho.fandeck}}</ion-label>
+          <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
+        </ion-item>
+        <ion-item class="ion-text-center">
+          <ion-label>Mini fandeck:</ion-label>
+          <ion-label>{{despacho.mini_fandeck}}</ion-label>
+          <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
+        </ion-item>
+        <ion-item class="ion-text-center">
+          <ion-label>Rollo Sticker:</ion-label>
+          <ion-label>{{despacho.rollo_Sticker}}</ion-label>
+          <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
+        </ion-item>
+        <ion-item class="ion-text-center">
+          <ion-label>Caja de cintas:</ion-label>
+          <ion-label>{{despacho.caja_De_Cintas}}</ion-label>
+          <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
+        </ion-item>
+        <ion-item class="ion-text-center">
+          <ion-label>Fecha de creación:</ion-label>
+          <ion-label>{{datePipe.transform(despacho.create_At, 'dd/MM/yyyy HH:mm')}}</ion-label>
+          <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
+        </ion-item>
+        <ion-button (click)="eliminar(i)" class="center-button" color="danger">Eliminar despacho</ion-button>
+      </ion-card>
+    </ion-list>
+
+</ion-content>
+
+<!--Navegación entre listados y dashboard-->
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button (click)="AlDashboard()" tab="home">
+          <ion-icon name="tv"></ion-icon>
+          Dashboard
+        </ion-tab-button>
+        <ion-tab-button (click)="ListaTiendas()" tab="radio">
+          <ion-icon name="storefront"></ion-icon>
+          Lista de tiendas
+        </ion-tab-button>
+        <ion-tab-button (click)="ListaJefe()" tab="search">
+          <ion-icon name="man"></ion-icon>
+          Lista de jefes zonales
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>  
+  </ion-toolbar>
+</ion-footer>
+
+

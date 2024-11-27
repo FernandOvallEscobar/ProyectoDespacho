@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      <h1>Despachos Pinturas Kolor</h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  
+      <ion-card-header class="ion-text-center">
+        <ion-card-title><h2>Lista de Jefes zonales</h2></ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="ion-text-center">
+        <ion-icon name="man" size="large"></ion-icon>
+        <br>
+        <ion-button (click)="AgregarJefe()" fill="solid" size="small">Agregar</ion-button>
+      </ion-card-content>
+    
+
+    <!--Lista-->
+   <!--Lista-->
+<ion-list lines="inset" *ngFor="let jefeZonal of jefesZonales; let i=index">
+  <ion-card>
+    <ion-card-title class="ion-text-center"><h3>Jefe Zonal n° {{jefeZonal.id}}</h3></ion-card-title>
+    
+    <ion-item class="ion-text-center">
+      <ion-label>Nombre:</ion-label>
+      <ion-label>{{jefeZonal.nombrejz}}</ion-label>
+      <ion-button color="success" expand="block" fill="solid" size="small">Editar</ion-button>
+    </ion-item>
+
+    <ion-item class="ion-text-center">
+      <ion-label>Apellido:</ion-label>
+      <ion-label>{{jefeZonal.apellido}}</ion-label>
+      <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
+    </ion-item>
+
+    <ion-item class="ion-text-center">
+      <ion-label>Correo:</ion-label>
+      <ion-label>{{jefeZonal.correo}}</ion-label>
+      <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
+    </ion-item>
+
+    <ion-item class="ion-text-center">
+      <ion-label>Teléfono:</ion-label>
+      <ion-label>{{jefeZonal.telefono}}</ion-label>
+      <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
+    </ion-item>
+
+    <ion-item class="ion-text-center">
+      <ion-label>Fecha de creación:</ion-label>
+      <ion-label>{{datePipe.transform(jefeZonal.create_At, 'dd/MM/yyyy HH:mm')}}</ion-label>
+      <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
+    </ion-item>
+
+    <ion-button (click)="eliminar(i)" class="center-button" color="danger">Eliminar Jefe Zonal</ion-button>
+  </ion-card>
+</ion-list>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button (click)="AlDashboard()" tab="home">
+          <ion-icon name="tv"></ion-icon>
+          Dashboard
+        </ion-tab-button>
+        <ion-tab-button (click)="ListaDespacho()" tab="radio">
+          <ion-icon name="cube"></ion-icon>
+          Lista de despachos
+        </ion-tab-button>
+        <ion-tab-button (click)="ListaTienda()" tab="search">
+          <ion-icon name="storefront"></ion-icon>
+          Lista de tiendas
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>  
+  </ion-toolbar>
+</ion-footer>

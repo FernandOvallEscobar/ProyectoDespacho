@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-title class="ion-text-center">
+    <h1>Despachos Pinturas Kolor</h1>
+  </ion-title>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card-header class="ion-text-center">
+    <ion-card-title><h2>Agregar tienda</h2></ion-card-title>
+  </ion-card-header>
+  <ion-card-content class="ion-text-center">
+    <ion-icon name="storefront" size="large"></ion-icon>
+  </ion-card-content>
+
+  <ion-card>
+    <ion-input [(ngModel)]="nombre" label="Nombre de tienda" label-placement="floating" fill="solid" placeholder="Nombre de tienda"></ion-input>
+    <ion-input [(ngModel)]="direccion" label="Dirección" label-placement="floating" fill="solid" placeholder="Dirección de la tienda"></ion-input>
+    <ion-input [(ngModel)]="correo" label="Correo" label-placement="floating" fill="solid" type="email" placeholder="Correo electrónico"></ion-input>
+    <ion-input [(ngModel)]="fecha" label="Fecha actual" label-placement="floating" fill="solid" type="date"></ion-input>
+  
+    <ion-button (click)="guardar()" expand="block">Guardar</ion-button>
+  </ion-card>
+
+</ion-content>

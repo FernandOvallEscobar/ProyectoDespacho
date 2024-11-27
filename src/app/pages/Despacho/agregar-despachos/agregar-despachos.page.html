@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-title class="ion-text-center">
+    <h1>Despachos Pinturas Kolor</h1>
+  </ion-title>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+
+  <ion-card-header class="ion-text-center">
+    <ion-card-title><h2>Agregar despachos</h2></ion-card-title>
+  </ion-card-header>
+  <ion-card-content class="ion-text-center">
+    <ion-icon name="cube" size="large"></ion-icon>
+  </ion-card-content>
+
+  <!--FORMULARIO-->
+  <!--ngModel conecta html con variables en typescript-->
+  <ion-card>
+    <ion-input [(ngModel)]="nombre" label="Nombre" label-placement="floating" fill="solid" placeholder="Nombre"></ion-input>
+    <ion-input [(ngModel)]="fandeck" label="Fandeck" label-placement="floating" fill="solid" type="number" placeholder="Cantidad de fandecks"></ion-input>
+    <ion-input [(ngModel)]="minifandeck" label="Minifandeck" label-placement="floating" fill="solid" type="number" placeholder="Cantidad de minifandecks"></ion-input>
+    <ion-input [(ngModel)]="rolloSticker" label="Rollo Sticker" label-placement="floating" fill="solid" type="number" placeholder="Cantidad de rollos"></ion-input>
+    <ion-input [(ngModel)]="cajaDeCintas" label="Caja de Cintas" label-placement="floating" fill="solid" type="number" placeholder="Cantidad de cajas"></ion-input>
+    <ion-input [(ngModel)]="fecha" label="Fecha actual" label-placement="floating" fill="solid" type="date"></ion-input>
+
+    <!--BOTÓN "FUNCIÓN DE GUARDAR"-->
+    <ion-button (click)="guardar()" expand="block">Guardar</ion-button>
+  </ion-card>
+
+</ion-content>

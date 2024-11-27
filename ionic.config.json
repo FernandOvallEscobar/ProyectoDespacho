@@ -1,0 +1,7 @@
+{
+  "name": "DespachoProject",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

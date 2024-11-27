@@ -1,0 +1,77 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      <h1>Despachos Pinturas Kolor</h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-card-header class="ion-text-center">
+    <ion-card-title><h2><b>Dashboard</b></h2></ion-card-title>
+  </ion-card-header>
+  <ion-card-content class="ion-text-center">
+    <ion-icon name="tv" size="large"></ion-icon>
+  </ion-card-content>
+
+  <ion-grid>
+            <!--CARD DESPACHO-->
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="10" size-md="6">
+        <ion-card class="ion-text-center">
+          <ion-card-header>
+            <ion-card-title><h3><b>Despachos</b></h3></ion-card-title>
+          </ion-card-header>
+          <!--CONTENIDO-->
+          <ion-card-content>
+            <ion-icon name="cube" size="large"></ion-icon>
+            <!--BOTONES-->
+            <ion-list>
+              <ion-button (click)="AgregarDespacho()" fill="solid" size="small">Agregar</ion-button>
+              <ion-button (click)="ListaDespacho()" fill="solid" size="small">Ver lista</ion-button>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!--CARD TIENDA-->
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="10" size-md="6">
+        <ion-card class="ion-text-center">
+          <ion-card-header>
+            <ion-card-title><h3><b>Tiendas</b></h3></ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-icon name="storefront" size="large"></ion-icon>
+            <ion-list>
+              <ion-button (click)="AgregarTienda()" fill="solid" size="small">Agregar</ion-button>
+              <ion-button (click)="ListaTienda()" fill="solid" size="small">Ver lista</ion-button>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!--CARD JEFE-->
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="10" size-md="6">
+        <ion-card class="ion-text-center">
+          <ion-card-header>
+            <ion-card-title><h3><b>Jefe zonal</b></h3></ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-icon name="man" size="large"></ion-icon>
+            <ion-list>
+              <ion-button (click)="AgregarJefe()" fill="solid" size="small">Agregar</ion-button>
+              <ion-button (click)="ListaJefe()" fill="solid" size="small">Ver lista</ion-button>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+
