@@ -14,20 +14,32 @@
 
         <ion-card-content>
           <!--Formulario-->
-          <form>
+          <form [formGroup]="form">
             <!--Inputs-->
-            <ion-input label="Correo" label-placement="floating" type="text" fill="outline"  placeholder="Correo"></ion-input>
+            <!--Correo-->
+            <ion-input formControlName="email" label="Correo" label-placement="floating" type="text" fill="outline"  placeholder="Correo"></ion-input>
+            <ion-text color="danger" *ngIf="form.get('email')?.invalid && form.get('email')?.touched"> <!--Si email es invalido o el campo fue tocado-->
+              <small *ngIf="form.get('email')?.hasError('required')">Correo obligatorio</small>
+              <small *ngIf="form.get('email')?.hasError('email')">Formato invalido</small>
+            </ion-text>
             <br>
-            <ion-input label="Contraseña" label-placement="floating" type="password" fill="outline"  placeholder="Contraseña">
+            <br>
+            <!--Contraseña-->
+            <ion-input formControlName= "password" label="Contraseña" label-placement="floating" type="password" fill="outline"  placeholder="Contraseña">
               <ion-input-password-toggle slot="end"></ion-input-password-toggle>
             </ion-input>
-
+            <ion-text color="danger" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+              <small *ngIf="form.get('password')?.hasError('required')">Contraseña obligatoria</small>
+              <small *ngIf="form.get('password')?.hasError('minlength')">Contraseña debe tener al menos 8 carácteres</small>
+            </ion-text>
+            <br>
             <br>
             <!--Botones-->
-            <ion-button color="dark" expand="block" fill="solid" >
+            <ion-button (click)="validar()" color="dark" expand="block" fill="solid" >
               Iniciar Sesión
             </ion-button>
-            <ion-button color="dark" expand="block" fill="solid" >
+            
+            <ion-button  (click)="goToRegister()" color="dark" expand="block" fill="solid" >
               Registrarme
             </ion-button>
             <br>
