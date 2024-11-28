@@ -1,0 +1,18 @@
+
+
+
+.transparent-card {
+    background: rgba(0, 0, 0, 0.466); // Fondo negro semitransparente 
+    border: none; // sin limina bordes 
+  }
+
+
+  .custom-text-white {
+    color: white;
+  }
+
+//Letras blancas
+ion-card-title, ion-card-subtitle, ion-input, a, ion-input-password-toggle {
+    color: white;
+
+}
