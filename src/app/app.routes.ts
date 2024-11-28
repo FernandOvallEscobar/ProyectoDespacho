@@ -7,7 +7,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -57,5 +57,13 @@ export const routes: Routes = [
   {
     path: 'eliminar-jefe',
     loadComponent: () => import('./pages/JefeZonal/eliminar-jefe/eliminar-jefe.page').then( m => m.EliminarJefePage)
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.page').then( m => m.RegisterPage)
   },
 ];
