@@ -2,18 +2,18 @@
 <ion-content [fullscreen]="true"> <!-- Establece que el contenido ocupe toda la pantalla -->
   <ion-row> <!-- Crea una fila dentro del layout de la página -->
     <ion-col size="12"> <!-- Crea una columna que ocupa todo el ancho (12 columnas) -->
-      <ion-card class="transparent-card">
+      <ion-card class="transparent-card ">
         <!-- Imagen del logo -->
-        <img alt="Silhouette of mountains" src="../../../assets/imgs/register.png" />
+        <img alt="Saltando_de_alegría_por_registrarse.jpeg" src="../../../assets/imgs/" />
         
         <!-- Cabecera del card con título y subtítulo -->
-        <ion-card-header>
-          <ion-card-title>Registrarme</ion-card-title> <!-- Título del card -->
-          <ion-card-subtitle>Ingresa tus credenciales para revisar tus cocteles</ion-card-subtitle> <!-- Subtítulo informativo -->
+        <ion-card-header class="ion-text-center">
+          <ion-card-title class="custom-text-white">Registrarme</ion-card-title> <!-- Título del card -->
+          <ion-card-subtitle class="custom-text-white">Ingresa tus credenciales para revisar tus cocteles</ion-card-subtitle> <!-- Subtítulo informativo -->
         </ion-card-header>
 
         <!-- Contenido del card donde se encuentra el formulario -->
-        <ion-card-content>
+        <ion-card-content class="custom-text-white">
           <!-- Formulario con validaciones usando 'ngForm' -->
           <form #loginForm="ngForm">
             
@@ -100,12 +100,13 @@
 
             <br>
 
-            <!-- Botón para enviar el formulario -->
-            <!-- El botón está deshabilitado si el formulario es inválido (loginForm.invalid) o si las contraseñas no coinciden -->
-            <ion-button expand="block" [disabled]="loginForm.invalid || confirmPassword !== password" (click)="goToLogin()">Registrarme</ion-button>
           </form>
         </ion-card-content>
       </ion-card>
+            <!-- Botón para enviar el formulario -->
+      <!-- El botón está deshabilitado si el formulario es inválido (loginForm.invalid) o si las contraseñas no coinciden -->
+      <ion-button color="dark" expand="block" [disabled]="loginForm.invalid || confirmPassword !== password" (click)="goToLogin()">Registrarme</ion-button>
+
     </ion-col>
   </ion-row>
 </ion-content>

@@ -1,2 +1,39 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+
+// Fondo
+ion-content{
+    --background: url('/assets/imgs/background.webp') no-repeat center center/cover;
+}
+
+ion-card {
+    background: rgba(0, 0, 0, 0.466); // Fondo negro semitransparente 
+    border: none; // sin limina bordes 
+  }
+
+  ion-button{
+    color:dark;
+  }
+
+  :root {
+    --ion-color-primary: #fffbfb;
+    --ion-color-secondary: #ff9900;
+    --ion-color-tertiary: #f2e8cf;
+    --ion-color-accent: #663399;
+    --ion-text-color-primary: #ffffff;
+    --ion-text-color-secondary: #66666663;
+    --ion-background-color: #f2f2f2;
+
+}
+
+ion-content {
+    --color: var(--ion-text-color-primary); /* Asigna el color a todo el contenido */
+  }
+  
+  ion-card-title,
+  ion-card-subtitle, ion-card-content {
+    color: var(--ion-text-color-primary); /* Aplica específicamente al texto */
+  }
+
+
+  

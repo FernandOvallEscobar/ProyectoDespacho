@@ -37,16 +37,3 @@
 @import '@ionic/angular/css/palettes/dark.system.css';
 
 
-// Fondo
-ion-content{
-    --background: url('/assets/imgs/background.webp') no-repeat center center/cover;
-}
-
-.transparent-card {
-    background: rgba(0, 0, 0, 0.466); // Fondo negro semitransparente 
-    border: none; // sin limina bordes 
-  }
-
-  .custom-text-white {
-    color: white;
-  }
