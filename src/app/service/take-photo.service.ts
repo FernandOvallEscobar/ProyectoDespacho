@@ -49,6 +49,5 @@ export class TakePhotoService {
             console.error('Error al obtener la dirección:', error);
             return null;
         }
-
     }
 }

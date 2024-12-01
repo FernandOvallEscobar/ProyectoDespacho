@@ -5,13 +5,15 @@ import {addIcons} from 'ionicons';
 import {storefront, man, cube, tv} from 'ionicons/icons';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardHeader, IonCardTitle, IonCardContent, IonIcon, IonButton, IonList, IonItem, IonLabel, IonCard, IonTabs, IonTabBar, IonTabButton, IonFooter } from '@ionic/angular/standalone';
 import { DatePipe } from '@angular/common';
-import{Router} from '@angular/router'
+import{Router} from '@angular/router';
+import { TiendaService } from '../../../service/tienda.service';
+
 
 export interface Tienda {
   id:number,
-  nombretienda:String,
-  direccion: String, 
-  correocont:String,
+  name:String,
+  address: String, 
+  email:String,
   create_at:Date
 }
 
@@ -26,51 +28,25 @@ export interface Tienda {
 
 export class ListarTiendasPage implements OnInit {
 
-  tiendas: Tienda[] = [
-    {
-      id: 1,
-      nombretienda: 'Pinturas Kolor Centro',
-      direccion: 'Av. Central 123, Ciudad Capital',
-      correocont: 'contacto@kolorcentro.com',
-      create_at: new Date('2024-01-15T08:30:00')
-    },
-    {
-      id: 2,
-      nombretienda: 'Pinturas Kolor Sur',
-      direccion: 'Av. Sur 456, Ciudad Capital',
-      correocont: 'contacto@kolorsur.com',
-      create_at: new Date('2024-03-10T09:00:00')
-    },
-    {
-      id: 3,
-      nombretienda: 'Pinturas Kolor Norte',
-      direccion: 'Av. Norte 789, Ciudad Capital',
-      correocont: 'contacto@kolornorte.com',
-      create_at: new Date('2024-05-05T10:15:00')
-    },
-    {
-      id: 4,
-      nombretienda: 'Pinturas Kolor Este',
-      direccion: 'Av. Este 321, Ciudad Capital',
-      correocont: 'contacto@koloreste.com',
-      create_at: new Date('2024-07-20T11:00:00')
-    },
-    {
-      id: 5,
-      nombretienda: 'Pinturas Kolor Oeste',
-      direccion: 'Av. Oeste 654, Ciudad Capital',
-      correocont: 'contacto@koloroeste.com',
-      create_at: new Date('2024-09-01T12:00:00')
-    }
-  ];
+  tiendas: any[] = [];
 
-  constructor(public datePipe: DatePipe, private router:Router) {
+  constructor(public datePipe: DatePipe, private router:Router, private tiendaService: TiendaService) {
     addIcons({storefront, man, cube, tv}); }
 
   
 
   ngOnInit() {
+    this.tiendaService.getTiendas().subscribe(
+      (data) => {
+        this.tiendas = data[0];
+        console.log('Tiendas en variable:', this.tiendas);
+      },
+      (error) => {
+        console.error('Error al cargar tiendas:', error);
+      }
+    );
   }
+  
 
   AgregarTienda(){
     this.router.navigate(['/agregar-tiendas'])

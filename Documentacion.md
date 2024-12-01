@@ -21,10 +21,10 @@ backgroundColor: #ffffff
 
 Continuación de construcción de aplicación movil utilizando Ionic y Angular. En esta etapa se agrega lo siguiente:
 
-- Función de capturar imagenes en sección de agregar Despacho, Tienda y Jefe zonal ✅
-- Integración de GPS ✅
-- Pruebas automatizadas para verificar funcionalidad de captura y GPS ✅
-- Importación de información desde una API externa
+- Función de capturar imagenes en sección de agregar Despacho, Tienda y Jefe zonal 
+- Integración de GPS 
+- Pruebas automatizadas para verificar funcionalidad de captura y GPS 
+- Importación de información desde una API externa 
 - Sincronización con un servicio web o API externa para almacenar de forma remota
 ![bg right:30% width:70%](src\assets\imgs\login.png)
 
@@ -32,7 +32,7 @@ Continuación de construcción de aplicación movil utilizando Ionic y Angular. 
 
 # **Integración GPS y capturar fotos** 
 En los ``agregar.page`` se pone la función de captura de fotografías y ubicación para agregar junto al despacho, jefe zona y tienda.
-![bg right:30% width:70%](src\assets\imgs\fotoGps.png)
+![bg left:30% width:70%](src\assets\imgs\fotoGps.png)
 
 
 ---
@@ -307,3 +307,216 @@ fit('debería mostrar éxito al guardar con todos los campos', () => {
 ![bg right:60% width: 90%](src\assets\imgs\karma.png)
 
 ---
+
+# **Importación de información desde una API externa** 
+![bg left:30% width: 60%](src\assets\imgs\listaTiendas.png)
+
+---
+
+## **``tienda.service.ts``**
+![bg right:30% width: 90%](src\assets\imgs\serviceTienda.png)
+
+Servicio en Angular que interactúa con la API de tiendas para obtener datos
+### Imports y configuración
+```typescript
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class TiendaService {
+  private apiUrl = 'https://674c886c54e1fca9290cdc56.mockapi.io/stores'; // endpoint
+  constructor(private http: HttpClient) {}
+}
+```
+---
+
+- ``@Injectable``: Define que este servicio puede ser inyectado en cualquier parte de la aplicación.
+- ``apiUrl``: Almacena la URL base del endpoint.
+- ``HttpClient``: Servicio para realizar solicitudes HTTP.
+
+---
+## Método: Obtener todas las tiendas
+
+```typescript
+getTiendas(): Observable<any[]> {
+  return this.http.get<any[]>(this.apiUrl);
+}
+```
+
+- `Objetivo`: Realiza una solicitud GET al endpoint para obtener un arreglo con todas las tiendas.
+- Tipo de Retorno: ``Observable<any[]>`` para manejar datos de forma reactiva.
+
+---
+## **``listar-tiendas.page.ts``**
+Listar las tiendas obtenidas desde una API externa
+
+### Imports
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { TiendaService } from '../../../service/tienda.service';
+import { Router } from '@angular/router';
+```
+- ``TiendaService``: Servicio para interactuar con la API de tiendas.
+- ``Router``: Navegación entre páginas dentro de la aplicación
+
+---
+### Declaración de la interfaz
+```typescript
+export interface Tienda {
+  id: number,
+  name: String,
+  address: String, 
+  email: String,
+  create_at: Date
+}
+```
+- Definición de la estructura de datos para una tienda
+
+---
+### Configuración de componente
+```typescript
+@Component({
+  selector: 'app-listar-tiendas',
+  templateUrl: './listar-tiendas.page.html',
+  styleUrls: ['./listar-tiendas.page.scss'],
+  standalone: true,
+  imports: [...],
+})
+export class ListarTiendasPage implements OnInit {
+  tiendas: any[] = [];
+  constructor(private tiendaService: TiendaService) {}
+}
+```
+- ``standalone``: Define que este componente es independiente.
+- ``tiendas``: Variable que almacena la lista de tiendas obtenida desde la API.
+
+---
+
+### Consumo de la API en ``ngOnInit``
+
+```typescript
+ngOnInit() {
+  this.tiendaService.getTiendas().subscribe(
+    (data) => {
+      this.tiendas = data[0];
+      console.log('Tiendas en variable:', this.tiendas);
+    },
+    (error) => {
+      console.error('Error al cargar tiendas:', error);
+    }
+  );
+}
+```
+- ``ngOnInit``: Se ejecuta al inicializar el componente.
+- ``this.tiendaService.getTiendas()``: Llama al servicio para obtener la lista de tiendas.
+- Manejo de Respuesta:
+  - ``data``: Almacena la respuesta exitosa.
+  - ``error``: Muestra un error si la solicitud falla.
+
+---
+### Imagenes de los resultados
+
+![bg right:60% width: 100%](src\assets\imgs\mockapiStore.png)
+![bg right:60% width: 70%](src\assets\imgs\listaTiendas.png)
+
+---
+
+# **Sincronización con un servicio web o API externa para almacenar de forma remota**
+![bg left:30% width: 90%](src\assets\imgs\mockapiStore.png)
+
+---
+## **``tienda.service.ts``**
+### Método: Agregar Tienda
+
+```typescript
+agregarTienda(tienda: any): Observable<any> {
+  return this.http.post<any>(this.apiUrl, tienda);
+}
+```
+- ``agregarTienda``: Este método usa una solicitud HTTP POST para enviar los datos de una tienda a la API y crearla en el servidor.
+- Parámetro: ``tienda`` (tipo ``any``), que representa los datos de la tienda a ser almacenados.
+- Tipo de Retorno: ``Observable<any>``, lo que permite manejar la respuesta de la API de manera reactiva.
+---
+
+### Endpoint de la API
+
+```typescript
+private apiUrl = 'https://674c886c54e1fca9290cdc56.mockapi.io/stores'; // endpoint
+```
+
+- guardamos en el endpoint de Mockapi con el que alimentamos la lista 
+
+---
+## **``agregar-tienda.page.html``**
+
+### Estructura del Formulario
+
+```html
+<form (ngSubmit)="agregarTienda()">
+  <ion-input [(ngModel)]="newTienda.name" name="name" label="Nombre de tienda" label-placement="floating" fill="solid" placeholder="Nombre de tienda"></ion-input>
+  <ion-input [(ngModel)]="newTienda.address" name="address" label="Dirección" label-placement="floating" fill="solid" placeholder="Dirección de la tienda"></ion-input>
+  <ion-input [(ngModel)]="newTienda.email" name="email" label="Correo" label-placement="floating" fill="solid" type="email" placeholder="Correo electrónico"></ion-input>
+</form>
+```
+
+- ``ngSubmit``: Ejecuta el método ``agregarTienda()`` cuando se envía el formulario.
+- ``ngModel``: Vincula los campos del formulario a las propiedades de ``newTienda``, que contiene los datos a enviar.
+- Campos: Nombre, dirección y correo de la tienda.
+
+---
+### Botón formulario 
+
+```typescript
+<ion-button (click)="agregarTienda()" expand="block">Guardar</ion-button>
+```
+- Botón "Guardar": Llama al método ``agregarTienda()`` para guardar los datos en la API.
+
+---
+
+## **``agregar-tienda.page.html``**
+### Variable para Almacenar Datos del Formulario
+
+```typescript
+newTienda = {
+  name: '',
+  address: '',
+  email: ''
+};
+```
+- ``newTienda``: Es un objeto que contiene las propiedades name, address y email. Estos campos se llenan a medida que el usuario introduce la información en el formulario y se envían cuando el formulario es enviado.
+---
+
+### Método agregar tienda a API
+```typescript
+agregarTienda() {
+  if (this.newTienda.name && this.newTienda.address && this.newTienda.email) {
+    this.tiendaService.agregarTienda(this.newTienda).subscribe(
+      (data) => {
+        console.log('Tienda agregada:', data);
+        this.newTienda = { name: '', address: '', email: '' };  // Limpiar el formulario
+      },
+      (error) => {
+        console.error('Error al agregar tienda:', error);
+      }
+    );
+  }
+}
+```
+- Método ``agregarTienda()``: Llama al servicio ``tiendaService`` para agregar la tienda al endpoint de la API, usando ``POST`` para enviar los datos.
+
+---
+
+
+![bg width:70%](src\assets\imgs\agregarTienda.png) ![bg width:70%](src\assets\imgs\mockapiAddStore.png)
+
+
+
+
+
+
+
+
+

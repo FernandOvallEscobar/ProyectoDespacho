@@ -1,10 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title class="ion-text-center">
-      <h1>Despachos Pinturas Kolor</h1>
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true">
   
@@ -24,27 +18,22 @@
       
       <ion-item class="ion-text-center">
         <ion-label>Nombre:</ion-label>
-        <ion-label>{{tienda.nombretienda}}</ion-label>
+        <ion-label>{{tienda.name}}</ion-label>
         <ion-button color="success" expand="block" fill="solid" size="small">Editar</ion-button>
       </ion-item>
 
       <ion-item class="ion-text-center">
         <ion-label>Dirección:</ion-label>
-        <ion-label>{{tienda.direccion}}</ion-label>
+        <ion-label>{{tienda.address}}</ion-label>
         <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
       </ion-item>
 
       <ion-item class="ion-text-center">
         <ion-label>Correo:</ion-label>
-        <ion-label>{{tienda.correocont}}</ion-label>
+        <ion-label>{{tienda.email}}</ion-label>
         <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
       </ion-item>
 
-      <ion-item class="ion-text-center">
-        <ion-label>Fecha de creación:</ion-label>
-        <ion-label>{{datePipe.transform(tienda.create_at, 'dd/MM/yyyy HH:mm')}}</ion-label>
-        <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
-      </ion-item>
 
       <ion-button (click)="eliminar(i)" class="center-button" color="danger">Eliminar Tienda</ion-button>
     </ion-card>

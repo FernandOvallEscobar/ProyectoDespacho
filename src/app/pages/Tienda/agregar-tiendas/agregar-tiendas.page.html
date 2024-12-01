@@ -8,11 +8,13 @@
   </ion-card-content>
 
   <ion-card>
-    <ion-input [(ngModel)]="nombre" label="Nombre de tienda" label-placement="floating" fill="solid" placeholder="Nombre de tienda"></ion-input>
-    <ion-input [(ngModel)]="direccion" label="Dirección" label-placement="floating" fill="solid" placeholder="Dirección de la tienda"></ion-input>
-    <ion-input [(ngModel)]="correo" label="Correo" label-placement="floating" fill="solid" type="email" placeholder="Correo electrónico"></ion-input>
-    <ion-input [(ngModel)]="fecha" label="Fecha actual" label-placement="floating" fill="solid" type="date"></ion-input>
-    <br>
+
+    <form (ngSubmit)="agregarTienda()">
+      <ion-input [(ngModel)]="newTienda.name" name="name" label="Nombre de tienda" label-placement="floating" fill="solid" placeholder="Nombre de tienda"></ion-input>
+      <ion-input [(ngModel)]="newTienda.address" name="address" label="Dirección" label-placement="floating" fill="solid" placeholder="Dirección de la tienda"></ion-input>
+      <ion-input [(ngModel)]="newTienda.email" name="email" label="Correo" label-placement="floating" fill="solid" type="email" placeholder="Correo electrónico"></ion-input>
+    </form>
+    
 
      <!--FOTO-->
      <ion-card *ngIf="photo">
@@ -34,7 +36,7 @@
     <ion-button expand="block" (click)="capturePhoto()">Tomar fotografía</ion-button><br/>
 
 
-    <ion-button (click)="guardar()" expand="block">Guardar</ion-button>
+    <ion-button (click)="agregarTienda()" expand="block">Guardar</ion-button>
   </ion-card>
 
 </ion-content>
