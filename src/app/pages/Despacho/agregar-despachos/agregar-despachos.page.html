@@ -1,12 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-title class="ion-text-center">
-    <h1>Despachos Pinturas Kolor</h1>
-  </ion-title>
-</ion-header>
-
-
 <ion-content [fullscreen]="true">
-
 
   <ion-card-header class="ion-text-center">
     <ion-card-title><h2>Agregar despachos</h2></ion-card-title>
@@ -24,9 +16,28 @@
     <ion-input [(ngModel)]="rolloSticker" label="Rollo Sticker" label-placement="floating" fill="solid" type="number" placeholder="Cantidad de rollos"></ion-input>
     <ion-input [(ngModel)]="cajaDeCintas" label="Caja de Cintas" label-placement="floating" fill="solid" type="number" placeholder="Cantidad de cajas"></ion-input>
     <ion-input [(ngModel)]="fecha" label="Fecha actual" label-placement="floating" fill="solid" type="date"></ion-input>
+<br>
 
-    <!--BOTÓN "FUNCIÓN DE GUARDAR"-->
-    <ion-button (click)="guardar()" expand="block">Guardar</ion-button>
+   <!--FOTO-->
+   <ion-card *ngIf="photo">
+    <ion-img [src]="photo" alt="Foto capturada"/>
   </ion-card>
 
+  <ion-card *ngIf="location">
+    <ion-card-header>
+      <ion-card-title>Tomar fotografía y obtener ubicación</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Latitud:{{location.latitude}} </p>
+      <p>Longitud: {{location.longitude}}</p>
+      <p>Dirección: {{address}}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botón para capturar foto y obtener ubicación -->
+  <ion-button expand="block" (click)="capturePhoto()">Tomar fotografía</ion-button><br />
+    
+    <ion-button (click)="guardar()" expand="block">Guardar</ion-button>
+  </ion-card>
+  
 </ion-content>

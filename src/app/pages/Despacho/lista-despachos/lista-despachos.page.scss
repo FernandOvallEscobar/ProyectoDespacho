@@ -3,4 +3,15 @@
     margin: 0 auto;  // Esto centra el botón horizontalmente
     width: auto;     // Esto permite que el botón tenga el tamaño adecuado para su contenido
   }
+
+  ion-card {
+    background: rgba(245, 5, 97, 0.466); // Fondo negro semitransparente 
+    border: none; // sin limina bordes 
+  }
+
+  .transparent {
+    background: rgba(245, 5, 97, 0); // Fondo negro semitransparente 
+
+  }
+
   

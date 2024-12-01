@@ -1,9 +1,3 @@
-<ion-header [translucent]="true">
-  <ion-title class="ion-text-center">
-    <h1>Despachos Pinturas Kolor</h1>
-  </ion-title>
-</ion-header>
-
 <ion-content [fullscreen]="true">
 
   <ion-card-header class="ion-text-center">
@@ -18,7 +12,28 @@
     <ion-input [(ngModel)]="direccion" label="Dirección" label-placement="floating" fill="solid" placeholder="Dirección de la tienda"></ion-input>
     <ion-input [(ngModel)]="correo" label="Correo" label-placement="floating" fill="solid" type="email" placeholder="Correo electrónico"></ion-input>
     <ion-input [(ngModel)]="fecha" label="Fecha actual" label-placement="floating" fill="solid" type="date"></ion-input>
+    <br>
+
+     <!--FOTO-->
+     <ion-card *ngIf="photo">
+      <ion-img [src]=""></ion-img>
+    </ion-card>
   
+    <ion-card *ngIf="location">
+      <ion-card-header>
+        <ion-card-title>Tomar fotografía y obtener ubicación</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Latitud:{{location.latitude}} </p>
+        <p>Longitud: {{location.longitude}}</p>
+        <p>Dirección: {{address}}</p>
+      </ion-card-content>
+    </ion-card>
+  
+    <!-- Botón para capturar foto y obtener ubicación -->
+    <ion-button expand="block" (click)="capturePhoto()">Tomar fotografía</ion-button><br/>
+
+
     <ion-button (click)="guardar()" expand="block">Guardar</ion-button>
   </ion-card>
 

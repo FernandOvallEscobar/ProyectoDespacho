@@ -94,7 +94,7 @@ export class ListaDespachosPage implements OnInit {
 
   // Navegación Tab
   AlDashboard(){
-    this.router.navigate(['/'])
+    this.router.navigate(['/home'])
   }
   ListaTiendas(){
     this.router.navigate(['/listar-tiendas'])

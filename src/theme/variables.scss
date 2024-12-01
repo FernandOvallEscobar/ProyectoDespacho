@@ -11,12 +11,8 @@ ion-card {
     border: none; // sin limina bordes 
   }
 
-  ion-button{
-    color:dark;
-  }
-
   :root {
-    --ion-color-primary: #fffbfb;
+    --ion-color-primary: #d90be0d3;
     --ion-color-secondary: #ff9900;
     --ion-color-tertiary: #f2e8cf;
     --ion-color-accent: #663399;
@@ -35,5 +31,11 @@ ion-content {
     color: var(--ion-text-color-primary); /* Aplica específicamente al texto */
   }
 
+  
+  
+  .transparent {
+    background: rgba(180, 199, 8, 0); // Fondo negro semitransparente 
+    border: none; // sin limina bordes 
+  }
 
   

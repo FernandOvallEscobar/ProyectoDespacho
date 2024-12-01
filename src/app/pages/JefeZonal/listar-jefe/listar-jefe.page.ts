@@ -72,7 +72,7 @@ export class ListarJefePage implements OnInit {
   ]
 
   constructor(public datePipe: DatePipe, private router:Router) {
-    addIcons({tv, storefront, cube});
+    addIcons({man, storefront, cube});
    }
 
   ngOnInit() {
@@ -86,7 +86,7 @@ export class ListarJefePage implements OnInit {
 
   // Navegación Tab
 AlDashboard(){
-  this.router.navigate(['/'])
+  this.router.navigate(['/home'])
 }
 ListaDespacho(){
   this.router.navigate(['/lista-despachos'])
