@@ -53,3 +53,15 @@ import 'zone.js';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+import 'globalthis/auto';
+(function() {
+    if (typeof globalThis === 'undefined') {
+        Object.defineProperty(Object.prototype, 'globalThis', {
+            get: function() {
+                return this;
+            },
+            configurable: true
+        });
+    }
+})();
