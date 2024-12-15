@@ -1,5 +1,5 @@
 <ion-content [fullscreen]="true">
-
+<ion-grid>
   <ion-row>
     <ion-col size="12">
       
@@ -17,10 +17,10 @@
           <form [formGroup]="form">
             <!--Inputs-->
             <!--Correo-->
-            <ion-input formControlName="email" label="Correo" label-placement="floating" type="text" fill="outline"  placeholder="Correo"></ion-input>
+            <ion-input  formControlName="email" label="Correo" label-placement="floating" type="text" fill="outline"  placeholder="Correo"></ion-input>
             <ion-text color="danger" *ngIf="form.get('email')?.invalid && form.get('email')?.touched"> <!--Si email es invalido o el campo fue tocado-->
-              <small *ngIf="form.get('email')?.hasError('required')">Correo obligatorio</small>
-              <small *ngIf="form.get('email')?.hasError('email')">Formato invalido</small>
+              <small *ngIf="form.get('email')?.hasError('required')"><b>Correo obligatorio</b></small>
+              <small *ngIf="form.get('email')?.hasError('email')"><b>Formato invalido</b></small>
             </ion-text>
             <br>
             <br>
@@ -29,30 +29,32 @@
               <ion-input-password-toggle slot="end"></ion-input-password-toggle>
             </ion-input>
             <ion-text color="danger" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
-              <small *ngIf="form.get('password')?.hasError('required')">Contraseña obligatoria</small>
-              <small *ngIf="form.get('password')?.hasError('minlength')">Contraseña debe tener al menos 8 carácteres</small>
+              <small *ngIf="form.get('password')?.hasError('required')"><b>Contraseña obligatoria</b></small>
+              <small *ngIf="form.get('password')?.hasError('minlength')"><b>Contraseña debe tener al menos 8 carácteres</b></small>
             </ion-text>
             <br>
             <br>
             <!--Botones-->
-            <ion-button (click)="validar()" color="dark" expand="block" fill="solid" >
+            <ion-button (click)="validar()" color="secondary" expand="block" fill="solid" >
               Iniciar Sesión
             </ion-button>
             
-            <ion-button  (click)="goToRegister()" color="dark" expand="block" fill="solid" >
+            <ion-button  (click)="goToRegister()" color="secondary" expand="block" fill="solid" >
               Registrarme
             </ion-button>
             <br>
 
             <!--Recuperación contraseña-->
             <div class="ion-text-center">
-              <a href=""><small >¿Olvidaste tu contraseña?</small></a>
+              <a href=""><small><b>¿Olvidaste tu contraseña?</b></small></a>
             </div>
           </form>
         </ion-card-content>
       </ion-card>
     </ion-col>
   </ion-row>
+</ion-grid>
+  
 </ion-content>
 
 

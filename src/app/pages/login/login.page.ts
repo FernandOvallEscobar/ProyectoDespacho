@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonRow, IonCol, IonCard, IonCardContent, IonInput, IonCardHeader, IonCardTitle, IonCardSubtitle, IonButton, IonInputPasswordToggle, IonText  } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonRow, IonCol, IonCard, IonCardContent, IonInput, IonCardHeader, IonCardTitle, IonCardSubtitle, IonButton, IonInputPasswordToggle, IonText, IonList, IonItem, IonGrid  } from '@ionic/angular/standalone';
 
 import {Router} from '@angular/router';
 
@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonInput, IonButton, IonInputPasswordToggle, IonText, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonInput, IonButton, IonInputPasswordToggle, IonText, IonList, IonItem, IonGrid, CommonModule, FormsModule, ReactiveFormsModule]
 })    
 export class LoginPage implements OnInit {
 

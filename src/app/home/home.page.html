@@ -9,7 +9,9 @@
   </div>
 
   <ion-grid>
-            <!--CARD DESPACHO-->
+    <ion-card class="main-card">
+
+      <!--CARD DESPACHO-->
     <ion-row class="ion-justify-content-center">
       <ion-col size="10" size-md="6">
         <ion-card class="ion-text-center">
@@ -22,8 +24,8 @@
             <!--BOTONES-->
 
             <ion-list class="transparent">
-              <ion-button (click)="AgregarDespacho()" fill="solid" size="small" color="dark" >Agregar</ion-button>
-              <ion-button (click)="ListaDespacho()" fill="solid" size="small" color="dark">Ver lista</ion-button>
+              <ion-button (click)="AgregarDespacho()" fill="solid" size="small" color="secondary" >Agregar</ion-button>
+              <ion-button (click)="ListaDespacho()" fill="solid" size="small" color="secondary">Ver lista</ion-button>
             </ion-list>
           </ion-card-content>
         </ion-card>
@@ -40,8 +42,8 @@
           <ion-card-content>
             <ion-icon name="storefront" size="large"></ion-icon>
             <ion-list>
-              <ion-button (click)="AgregarTienda()" fill="solid" size="small" color="dark">Agregar</ion-button>
-              <ion-button (click)="ListaTienda()" fill="solid" size="small" color="dark">Ver lista</ion-button>
+              <ion-button (click)="AgregarTienda()" fill="solid" size="small" color="secondary">Agregar</ion-button>
+              <ion-button (click)="ListaTienda()" fill="solid" size="small" color="secondary">Ver lista</ion-button>
             </ion-list>
           </ion-card-content>
         </ion-card>
@@ -58,13 +60,15 @@
           <ion-card-content>
             <ion-icon name="man" size="large"></ion-icon>
             <ion-list>
-              <ion-button (click)="AgregarJefe()" fill="solid" size="small" color="dark">Agregar</ion-button>
-              <ion-button (click)="ListaJefe()" fill="solid" size="small" color="dark">Ver lista</ion-button>
+              <ion-button (click)="AgregarJefe()" fill="solid" size="small" color="secondary">Agregar</ion-button>
+              <ion-button (click)="ListaJefe()" fill="solid" size="small" color="secondary">Ver lista</ion-button>
             </ion-list>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
+      
+    </ion-card>
 
   </ion-grid>
 </ion-content>

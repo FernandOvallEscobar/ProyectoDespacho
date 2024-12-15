@@ -9,8 +9,7 @@ backgroundColor: #ffffff
 # **Evaluación 2**
 ### Curso: *Desarrollo de aplicaciones móviles*
 
-![bg left:30% width:100%](src\assets\imgs\ionic-1.png) <!-- Cambia la URL por la imagen que desees -->
-
+![bg left:30% width:100%](ionic-1.png) 
 **Profesor:** Vicente Zapata  
 **Alumnos:** Matías Martinez, Fernando Ovalle
 
@@ -26,19 +25,19 @@ Continuación de construcción de aplicación movil utilizando Ionic y Angular. 
 - Pruebas automatizadas para verificar funcionalidad de captura y GPS 
 - Importación de información desde una API externa 
 - Sincronización con un servicio web o API externa para almacenar de forma remota
-![bg right:30% width:70%](src\assets\imgs\login.png)
+![bg right:30% width:70%](login.png)
 
 ---
 
 # **Integración GPS y capturar fotos** 
 En los ``agregar.page`` se pone la función de captura de fotografías y ubicación para agregar junto al despacho, jefe zona y tienda.
-![bg left:30% width:70%](src\assets\imgs\fotoGps.png)
+![bg left:30% width:70%](fotoGps.png)
 
 
 ---
 ## **1. Creación service take-photo.service.ts en carpeta service**
 Servicio para capturar una foto desde la cámara o cargar desde galería, obtener la ubicación actual (coordenadas) y convertirla en una dirección.
-![bg right:30% width:90%](src\assets\imgs\service.png)
+![bg right:30% width:90%](service.png)
 
 ---
 ### Imports
@@ -302,19 +301,19 @@ fit('debería mostrar éxito al guardar con todos los campos', () => {
 ## **Imágenes test de funciones**
  Comando ``ng test`` en carpeta del proyecto, 12 tests exitosos
 
-![bg right:60% width: 100%](src\assets\imgs\ng_test.png)
+![bg right:60% width: 100%](ng_test.png)
 
-![bg right:60% width: 90%](src\assets\imgs\karma.png)
+![bg right:60% width: 90%](karma.png)
 
 ---
 
 # **Importación de información desde una API externa** 
-![bg left:30% width: 60%](src\assets\imgs\listaTiendas.png)
+![bg left:30% width: 60%](listaTiendas.png)
 
 ---
 
 ## **``tienda.service.ts``**
-![bg right:30% width: 90%](src\assets\imgs\serviceTienda.png)
+![bg right:30% width: 90%](serviceTienda.png)
 
 Servicio en Angular que interactúa con la API de tiendas para obtener datos
 ### Imports y configuración
@@ -419,13 +418,13 @@ ngOnInit() {
 ---
 ### Imagenes de los resultados
 
-![bg right:60% width: 100%](src\assets\imgs\mockapiStore.png)
-![bg right:60% width: 70%](src\assets\imgs\listaTiendas.png)
+![bg right:60% width: 100%](mockapiStore.png)
+![bg right:60% width: 70%](listaTiendas.png)
 
 ---
 
 # **Sincronización con un servicio web o API externa para almacenar de forma remota**
-![bg left:30% width: 90%](src\assets\imgs\mockapiStore.png)
+![bg left:30% width: 90%](mockapiStore.png)
 
 ---
 ## **``tienda.service.ts``**
@@ -510,7 +509,7 @@ agregarTienda() {
 ---
 
 
-![bg width:70%](src\assets\imgs\agregarTienda.png) ![bg width:70%](src\assets\imgs\mockapiAddStore.png)
+![bg width:70%](agregarTienda.png) ![bg width:70%](mockapiAddStore.png)
 
 
 

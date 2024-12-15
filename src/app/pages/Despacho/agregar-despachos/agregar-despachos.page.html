@@ -1,43 +1,105 @@
 <ion-content [fullscreen]="true">
 
-  <ion-card-header class="ion-text-center">
-    <ion-card-title><h2>Agregar despachos</h2></ion-card-title>
-  </ion-card-header>
-  <ion-card-content class="ion-text-center">
-    <ion-icon name="cube" size="large"></ion-icon>
-  </ion-card-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        
+        <!--Card envolviendo formulario-->
+        <ion-card class="ion-margin-top transparent-card " >  
+          <ion-card-header class="ion-text-center">
+              <ion-card-title><b>Agregar despachos</b></ion-card-title>
+              <ion-card-content class="ion-text-center">
+                <ion-icon name="cube" size="large"></ion-icon>
+              </ion-card-content>
+          </ion-card-header>
+  
+          <ion-card-content>
+            <!--formControlName Conecta cada campo del formulario con el control de formulario correspondiente.-->
+            <form [formGroup]="form"> <!--Conecta el formulario con el grupo de formularios definido en el componente.-->
 
-  <!--FORMULARIO-->
-  <!--ngModel conecta html con variables en typescript-->
-  <ion-card>
-    <ion-input [(ngModel)]="nombre" label="Nombre" label-placement="floating" fill="solid" placeholder="Nombre"></ion-input>
-    <ion-input [(ngModel)]="fandeck" label="Fandeck" label-placement="floating" fill="solid" type="number" placeholder="Cantidad de fandecks"></ion-input>
-    <ion-input [(ngModel)]="minifandeck" label="Minifandeck" label-placement="floating" fill="solid" type="number" placeholder="Cantidad de minifandecks"></ion-input>
-    <ion-input [(ngModel)]="rolloSticker" label="Rollo Sticker" label-placement="floating" fill="solid" type="number" placeholder="Cantidad de rollos"></ion-input>
-    <ion-input [(ngModel)]="cajaDeCintas" label="Caja de Cintas" label-placement="floating" fill="solid" type="number" placeholder="Cantidad de cajas"></ion-input>
-    <ion-input [(ngModel)]="fecha" label="Fecha actual" label-placement="floating" fill="solid" type="date"></ion-input>
-<br>
+              <!-- Nombre -->
+              <ion-input formControlName="nombre" label="Nombre" label-placement="floating" type="text" fill="outline" placeholder="Nombre" (input)="inputNombre()"></ion-input>
+              <ion-text color="danger" *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched"> <!--Si email es invalido o el campo fue tocado-->
+                <small *ngIf="form.get('nombre')?.hasError('required')"><b>Nombre obligatorio</b></small>    
+              </ion-text>
+              <br>
 
-   <!--FOTO-->
-   <ion-card *ngIf="photo">
-    <ion-img [src]="photo" alt="Foto capturada"/>
-  </ion-card>
+              <!-- Fandeck -->
+              <ion-input formControlName="fandeck" label="Fandeck" label-placement="floating" fill="outline" type="text" placeholder="Cantidad de fandecks" (input)="inputFandeck()"></ion-input> 
+              <ion-text color="danger" *ngIf="form.get('fandeck')?.invalid && form.get('fandeck')?.touched">
+                <small *ngIf="form.get('fandeck')?.hasError('required')"><b>Fandeck obligatorio</b></small>
+                <small *ngIf="form.get('fandeck')?.hasError('pattern')"><b>Solo se aceptan números</b></small>
+              </ion-text>
+              <br>
+            
 
-  <ion-card *ngIf="location">
-    <ion-card-header>
-      <ion-card-title>Tomar fotografía y obtener ubicación</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Latitud:{{location.latitude}} </p>
-      <p>Longitud: {{location.longitude}}</p>
-      <p>Dirección: {{address}}</p>
-    </ion-card-content>
-  </ion-card>
+              <!-- Minifandeck -->
+              <ion-input formControlName="minifandeck" label="Minifandeck" label-placement="floating" fill="outline" type="text" placeholder="Cantidad de minifandecks" (input)="inputminifandeck()"></ion-input>  
+              <ion-text color="danger" *ngIf="form.get('minifandeck')?.invalid && form.get('minifandeck')?.touched">
+                <small *ngIf="form.get('minifandeck')?.hasError('required')"><b>Minifandeck obligatorio</b></small>
+                <small *ngIf="form.get('minifandeck')?.hasError('pattern')"><b>Solo se aceptan números</b></small>
+              </ion-text>
+              <br>
+            
 
-  <!-- Botón para capturar foto y obtener ubicación -->
-  <ion-button expand="block" (click)="capturePhoto()">Tomar fotografía</ion-button><br />
+              <!-- Rollo Sticker -->
+              <ion-input formControlName="rolloSticker" label="Rollo Sticker" label-placement="floating" fill="outline" type="text" placeholder="Cantidad de rollos" (input)="inputRollo()"></ion-input>
+              <ion-text color="danger" *ngIf="form.get('rolloSticker')?.invalid && form.get('rolloSticker')?.touched">
+                <small *ngIf="form.get('rolloSticker')?.hasError('required')"><b>Rollo Sticker obligatorio</b></small>
+                <small *ngIf="form.get('rolloSticker')?.hasError('pattern')"><b>Solo se aceptan números</b></small>
+              </ion-text> 
+              <br>
+              
+
+              <!-- Caja de Cintas -->
+              <ion-input formControlName="cajaDeCintas" label="Caja de Cintas" label-placement="floating" fill="outline" type="text" placeholder="Cantidad de cajas" (input)="inputCaja()"></ion-input>
+              <ion-text color="danger" *ngIf="form.get('cajaDeCintas')?.invalid && form.get('cajaDeCintas')?.touched">
+                <small *ngIf="form.get('cajaDeCintas')?.hasError('required')"><b>Caja de Cintas obligatorio</b></small>
+                <small *ngIf="form.get('cajaDeCintas')?.hasError('pattern')"><b>Fecha invalida</b></small>
+              </ion-text>
+              <br>
+            
+              <!-- Fecha -->
+              <ion-input formControlName="fecha" label="Fecha actual" label-placement="floating" fill="outline" type="date"></ion-input>
+              <ion-text color="danger" *ngIf="form.get('fecha')?.invalid && form.get('fecha')?.touched">
+                <small *ngIf="form.get('fecha')?.hasError('required')"><b>Fecha obligatoria</b></small>
+                <small *ngIf="form.get('fecha')?.hasError('fechaAnterior')" (input)="inputFecha()"><b>Fecha invalida</b></small>
+              </ion-text>
+            </form>
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
     
-    <ion-button (click)="guardar()" expand="block">Guardar</ion-button>
-  </ion-card>
+
+
+    <ion-row>
+      <ion-col size="12">
+        <!--FOTO-->
+        <ion-card *ngIf="photo">
+          <ion-img [src]="photo" alt="Foto capturada"/>
+        </ion-card>
+      
+        <ion-card *ngIf="location">
+          <ion-card-header>
+            <ion-card-title>Tomar fotografía y obtener ubicación</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Latitud:{{location.latitude}} </p>
+            <p>Longitud: {{location.longitude}}</p>
+            <p>Dirección: {{address}}</p>
+          </ion-card-content>
+        </ion-card>
+
+          <!-- Botón para capturar foto y obtener ubicación -->
+          <ion-button expand="block" (click)="capturePhoto()" color="secondary">Tomar fotografía</ion-button>
+          
+          <ion-button (click)="guardar()" expand="block" color="secondary">Guardar</ion-button>
+        
+      
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   
 </ion-content>
