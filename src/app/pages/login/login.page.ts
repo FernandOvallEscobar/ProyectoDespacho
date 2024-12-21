@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonRow, IonCol, IonCard, IonCardContent, IonInput, IonCardHeader, IonCardTitle, IonCardSubtitle, IonButton, IonInputPasswordToggle, IonText, IonList, IonItem, IonGrid  } from '@ionic/angular/standalone';
+import { StorageService } from '../../service/storage.service';
+
 
 import {Router} from '@angular/router';
 
@@ -14,7 +16,7 @@ import {Router} from '@angular/router';
 })    
 export class LoginPage implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor(private router : Router, private  storage: StorageService) { }
 
   //Agregar ReactiveFormsModule
   //variable no inicializada
@@ -38,15 +40,18 @@ export class LoginPage implements OnInit {
   goToRegister(){
     this.router.navigate(['/register']); //Redirección a la ruta '/register' para el registro de usuarios
   }
-  validar(){
+  async validar(){
     //Si el formulario es o no valido
     if(this.form.invalid){
       this.form.markAllAsTouched()
       return
     }
-
-    this.router.navigate(['home'])
-
+    const valid = await this.storage.loginUser(this.form.value.email, this.form.value.password)
+    if (valid){
+      this.router.navigate(['home'])
+    }else{
+      console.log('Usuario o contraseña incorrectos')
+    }
   }
 
 }

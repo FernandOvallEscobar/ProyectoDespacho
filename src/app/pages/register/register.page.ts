@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {Router} from '@angular/router';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonInput, IonText, IonButton, IonInputPasswordToggle } from '@ionic/angular/standalone';
-
+import { StorageService} from '../../service/storage.service';  
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -12,6 +12,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonRow, IonCol, IonCard, I
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonInput, IonText, IonButton, IonInputPasswordToggle, CommonModule, FormsModule]
 })
 export class RegisterPage implements OnInit {
+
   email: string = '';
   password: string = '';
   firstName: string = '';
@@ -19,12 +20,27 @@ export class RegisterPage implements OnInit {
   confirmPassword: string = '';
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private storage:StorageService) { }
 
   ngOnInit() {
   }
   goToLogin(){
     this.router.navigate(['/login']);
+  }
+
+  async register(){
+    if (this.password !== this.confirmPassword){
+      console.log('Passwords do not match');
+      return;
+    } 
+      const user = {
+        email: this.email,
+        password: this.password,
+        firstName: this.firstName,
+        lastName: this.lastName
+      }
+      await this.storage.registerUser(this.email, this.password, this.firstName, this.lastName);  
+      this.router.navigate(['/login']);
   }
 
 }

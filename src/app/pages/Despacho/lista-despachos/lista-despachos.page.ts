@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
 import { cube, man, storefront, tv } from 'ionicons/icons';
 import { DatePipe } from '@angular/common';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonIcon, IonButton, IonCard, IonCardTitle, IonCardHeader, IonLabel, IonCardContent, IonTabs, IonTabBar, IonTabButton, IonFooter  } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonIcon, IonButton, IonCard, IonCardTitle, IonCardHeader, IonLabel, IonCardContent, IonTabs, IonTabBar, IonTabButton, IonFooter, IonGrid, IonRow, IonCol  } from '@ionic/angular/standalone';
 import{Router} from '@angular/router'
 
 export interface Despacho{
@@ -24,7 +24,7 @@ export interface Despacho{
   styleUrls: ['./lista-despachos.page.scss'],
   standalone: true,
   providers: [DatePipe],
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar,IonList, IonItem, IonIcon, IonLabel, IonButton, IonCard,IonCardHeader,IonCardTitle, IonCardContent, IonTabs, IonTabBar, IonTabButton, IonFooter, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar,IonList, IonItem, IonIcon, IonLabel, IonButton, IonCard,IonCardHeader,IonCardTitle, IonCardContent, IonTabs, IonTabBar, IonTabButton, IonFooter, IonGrid, IonRow, IonCol, CommonModule, FormsModule]
 })
 export class ListaDespachosPage implements OnInit {
 
