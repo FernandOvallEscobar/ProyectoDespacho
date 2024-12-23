@@ -1,63 +1,82 @@
-
-
 <ion-content [fullscreen]="true">
-  
-  <ion-card-header class="ion-text-center">
-    <ion-card-title><h2>Lista de Tiendas</h2></ion-card-title>
-  </ion-card-header>
-  <ion-card-content class="ion-text-center">
-    <ion-icon name="storefront" size="large"></ion-icon>
-    <br>
-    <ion-button (click)="AgregarTienda()" fill="solid" size="small">Agregar</ion-button>
-  </ion-card-content>
 
-  <!--Lista-->
-  <ion-list lines="inset" *ngFor="let tienda of tiendas; let i= index">
-    <ion-card>
-      <ion-card-title class="ion-text-center"><h3>Tienda n° {{tienda.id}}</h3></ion-card-title>
-      
-      <ion-item class="ion-text-center">
-        <ion-label>Nombre:</ion-label>
-        <ion-label>{{tienda.name}}</ion-label>
-        <ion-button color="success" expand="block" fill="solid" size="small">Editar</ion-button>
-      </ion-item>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card class="main-card">
+          <!--Carta cabecera-->
+          <ion-card>
+            <ion-card-header class="ion-text-center">
+              <ion-card-title><b>Lista de Tiendas</b></ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="ion-text-center">
+              <ion-icon name="storefront" size="large"></ion-icon>
+              <br>
+              <ion-button (click)="AgregarTienda()" fill="solid" size="small" color="secondary">Agregar</ion-button>
+                        <ion-button (click)="loadTiendas()" fill="solid" size="small" color="secondary">Actualizar</ion-button>
 
-      <ion-item class="ion-text-center">
-        <ion-label>Dirección:</ion-label>
-        <ion-label>{{tienda.address}}</ion-label>
-        <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
-      </ion-item>
+            </ion-card-content>
+          </ion-card>
 
-      <ion-item class="ion-text-center">
-        <ion-label>Correo:</ion-label>
-        <ion-label>{{tienda.email}}</ion-label>
-        <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
-      </ion-item>
+          <!--Carta lista-->
+          <ion-card>
+            <!--Lista-->
+            <ion-list lines="full" *ngFor="let tienda of tiendas; let i = index">
+              <ion-card-header>
+                <ion-card-title class="ion-text-center"><b>Tienda n° {{tienda.id}}</b></ion-card-title>
+              </ion-card-header>
+              <ion-item class="ion-text-center">
+                <ion-label>Nombre</ion-label>
+                <ion-label>{{tienda.name}}</ion-label>
+                <ion-button color="success" expand="block" fill="solid" size="small">Editar</ion-button>
+              </ion-item>
 
+              <ion-item class="ion-text-center">
+                <ion-label>Dirección:</ion-label>
+                <ion-label>{{tienda.address}}</ion-label>
+                <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
+              </ion-item>
 
-      <ion-button (click)="eliminar(i)" class="center-button" color="danger">Eliminar Tienda</ion-button>
-    </ion-card>
-  </ion-list>
+              <ion-item class="ion-text-center">
+                <ion-label>Correo:</ion-label>
+                <ion-label class="email-label">{{tienda.email}}</ion-label>
+                <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
+              </ion-item>
+
+              <ion-item class="ion-text-center">
+                <ion-label>Fecha de creación:</ion-label>
+                <ion-label>{{datePipe.transform(tienda.create_at, 'dd/MM/yyyy HH:mm')}}</ion-label>
+                <ion-button color="success" expand="block" fill="solid">Editar</ion-button>
+              </ion-item>
+              <ion-button (click)="eliminar(i)" class="center-button" color="danger">Eliminar Tienda</ion-button>
+            </ion-list>
+          </ion-card>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
 
-
+<!--Navegación entre listados y dashboard-->
 <ion-footer>
   <ion-toolbar>
     <ion-tabs>
       <ion-tab-bar slot="bottom">
         <ion-tab-button (click)="AlDashboard()" tab="home">
           <ion-icon name="tv"></ion-icon>
-          Dashboard
+          <span>Dashboard</span>
         </ion-tab-button>
         <ion-tab-button (click)="ListaDespacho()" tab="radio">
           <ion-icon name="cube"></ion-icon>
-          Lista de despachos
+          <span>Lista de despachos</span>
         </ion-tab-button>
         <ion-tab-button (click)="ListaJefe()" tab="search">
           <ion-icon name="man"></ion-icon>
-          Lista de jefes zonales
+          <span>Lista de jefes zonales</span>
         </ion-tab-button>
       </ion-tab-bar>
-    </ion-tabs>  
+    </ion-tabs>
   </ion-toolbar>
 </ion-footer>

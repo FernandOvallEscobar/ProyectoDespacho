@@ -509,8 +509,6 @@ agregarTienda() {
 ---
 
 
-![bg width:70%](agregarTienda.png) ![bg width:70%](mockapiAddStore.png)
-
 
 
 

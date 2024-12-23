@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {addIcons} from 'ionicons';
-import {cube, man, storefront, tv} from 'ionicons/icons';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardHeader, IonCardTitle, IonCardContent, IonIcon, IonButton, IonList, IonItem, IonLabel, IonCard, IonTabs, IonTabBar, IonTabButton, IonFooter } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { cube, man, storefront, tv } from 'ionicons/icons';
 import { DatePipe } from '@angular/common';
-import{Router} from '@angular/router'
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCardHeader, IonCardTitle, IonCardContent, IonIcon, IonButton, IonList, IonItem, IonLabel, IonCard, IonTabs, IonTabBar, IonTabButton, IonFooter, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 
-
-export interface JefeZonal{
-  id:number,
-  nombrejz:String,
-  apellido:String, 
-  correo:String,
-  telefono:number,
-  create_At:Date
+export interface JefeZonal {
+  id: number;
+  nombrejz: string;
+  apellido: string;
+  correo: string;
+  telefono: number;
+  create_At: Date;
 }
 
 @Component({
@@ -23,12 +22,11 @@ export interface JefeZonal{
   styleUrls: ['./listar-jefe.page.scss'],
   standalone: true,
   providers: [DatePipe],
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonCardHeader, IonCardTitle, IonCardContent, IonIcon, IonButton, IonList, IonItem, IonLabel, IonCard, IonTabs, IonTabBar, IonTabButton, IonFooter, CommonModule, FormsModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonCardHeader, IonCardTitle, IonCardContent, IonIcon, IonButton, IonList, IonItem, IonLabel, IonCard, IonTabs, IonTabBar, IonTabButton, IonFooter, IonGrid, IonRow, IonCol, CommonModule, FormsModule]
 })
-
 export class ListarJefePage implements OnInit {
 
-  jefesZonales: JefeZonal[] =[
+  jefesZonales: JefeZonal[] = [
     {
       id: 1,
       nombrejz: 'Carlos',
@@ -69,37 +67,35 @@ export class ListarJefePage implements OnInit {
       telefono: 321654987,
       create_At: new Date('2021-08-30')
     }
-  ]
+  ];
 
-  constructor(public datePipe: DatePipe, private router:Router) {
-    addIcons({man, storefront, cube});
-   }
+  constructor(public datePipe: DatePipe, private router: Router) {
+    addIcons({ man, storefront, cube, tv });
+  }
 
   ngOnInit() {
   }
 
   // Función para cambiar pagina
-  AgregarJefe(){
-    this.router.navigate(['/agregar-jefe'])
+  AgregarJefe() {
+    this.router.navigate(['/agregar-jefe']);
   }
-
 
   // Navegación Tab
-AlDashboard(){
-  this.router.navigate(['/home'])
-}
-ListaDespacho(){
-  this.router.navigate(['/lista-despachos'])
-}
-ListaTienda(){
-  this.router.navigate(['/listar-tiendas'])
-}
-
-
-
-  // Función eliminación
-  eliminar(index:number){
-    this.jefesZonales.splice(index,1)
+  AlDashboard() {
+    this.router.navigate(['/home']);
   }
 
+  ListaDespacho() {
+    this.router.navigate(['/lista-despachos']);
+  }
+
+  ListaTienda() {
+    this.router.navigate(['/listar-tiendas']);
+  }
+
+  // Función eliminación
+  eliminar(index: number) {
+    this.jefesZonales.splice(index, 1);
+  }
 }

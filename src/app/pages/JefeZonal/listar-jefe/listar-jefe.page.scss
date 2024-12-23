@@ -1,7 +1,17 @@
 .center-button {
-    display: block;
-    margin: 0 auto;  // Esto centra el botón horizontalmente
-    width: auto;     // Esto permite que el botón tenga el tamaño adecuado para su contenido
-  }
-  
-  
+  display: block;
+  margin: 0 auto;  // Esto centra el botón horizontalmente
+  width: auto;     // Esto permite que el botón tenga el tamaño adecuado para su contenido
+}
+
+ion-item ion-label {
+  color: #e9e9e9;
+}
+
+.email-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+}
+

@@ -1,42 +1,71 @@
-<ion-content [fullscreen]="true">
+<ion-content>
 
-  <ion-card-header class="ion-text-center">
-    <ion-card-title><h2>Agregar tienda</h2></ion-card-title>
-  </ion-card-header>
-  <ion-card-content class="ion-text-center">
-    <ion-icon name="storefront" size="large"></ion-icon>
-  </ion-card-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header class="ion-text-center">
+            <ion-card-title><b>Agregar Tiendas</b></ion-card-title>
+            <ion-card-content class="ion-text-center">
+              <ion-icon name="storefront" size="large"></ion-icon>
+            </ion-card-content>
+          </ion-card-header>
 
-  <ion-card>
+          <ion-card-content>
+            <form [formGroup]="form">
+              <!-- Nombre -->
+              <ion-input formControlName="name" label="Nombre" label-placement="floating" type="text" fill="outline" placeholder="Nombre" (input)="inputName()"></ion-input>
+              <ion-text color="danger" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+                <small *ngIf="form.get('name')?.hasError('required')"><b>Nombre obligatorio</b></small>
+              </ion-text>
+              <br>
 
-    <form (ngSubmit)="agregarTienda()">
-      <ion-input [(ngModel)]="newTienda.name" name="name" label="Nombre de tienda" label-placement="floating" fill="solid" placeholder="Nombre de tienda"></ion-input>
-      <ion-input [(ngModel)]="newTienda.address" name="address" label="Dirección" label-placement="floating" fill="solid" placeholder="Dirección de la tienda"></ion-input>
-      <ion-input [(ngModel)]="newTienda.email" name="email" label="Correo" label-placement="floating" fill="solid" type="email" placeholder="Correo electrónico"></ion-input>
-    </form>
-    
+              <!-- Dirección -->
+              <ion-input formControlName="address" label="Dirección" label-placement="floating" type="text" fill="outline" placeholder="Dirección" (input)="inputAddress()"></ion-input>
+              <ion-text color="danger" *ngIf="form.get('address')?.invalid && form.get('address')?.touched">
+                <small *ngIf="form.get('address')?.hasError('required')"><b>Dirección obligatoria</b></small>
+              </ion-text>
+              <br>
 
-     <!--FOTO-->
-     <ion-card *ngIf="photo">
-      <ion-img [src]=""></ion-img>
-    </ion-card>
-  
-    <ion-card *ngIf="location">
-      <ion-card-header>
-        <ion-card-title>Tomar fotografía y obtener ubicación</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Latitud:{{location.latitude}} </p>
-        <p>Longitud: {{location.longitude}}</p>
-        <p>Dirección: {{address}}</p>
-      </ion-card-content>
-    </ion-card>
-  
-    <!-- Botón para capturar foto y obtener ubicación -->
-    <ion-button expand="block" (click)="capturePhoto()">Tomar fotografía</ion-button><br/>
+              <!-- Correo Electrónico -->
+              <ion-input formControlName="email" label="Correo Electrónico" label-placement="floating" type="email" fill="outline" placeholder="Correo Electrónico" (input)="inputEmail()"></ion-input>
+              <ion-text color="danger" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+                <small *ngIf="form.get('email')?.hasError('required')"><b>Correo electrónico obligatorio</b></small>
+                <small *ngIf="form.get('email')?.hasError('email')"><b>Correo electrónico inválido</b></small>
+              </ion-text>
+              <br>
+            </form>
+            <ion-text color="success" *ngIf="successMessage">
+              <p>{{ successMessage }}</p>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col size="12">
+        <!--FOTO-->
+        <ion-card *ngIf="photo">
+          <ion-img [src]="photo" alt="Foto capturada"/>
+        </ion-card>
+      
+        <ion-card *ngIf="location">
+          <ion-card-header>
+            <ion-card-title>Tomar fotografía y obtener ubicación</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Latitud:{{location.latitude}} </p>
+            <p>Longitud: {{location.longitude}}</p>
+            <p>Dirección: {{address}}</p>
+          </ion-card-content>
+        </ion-card>
 
-    <ion-button (click)="agregarTienda()" expand="block">Guardar</ion-button>
-  </ion-card>
-
+        <!-- Botón para capturar foto y obtener ubicación -->
+        <ion-button expand="block" (click)="capturePhoto()" color="secondary">Tomar fotografía</ion-button>
+          
+        <ion-button (click)="guardar()" expand="block" color="secondary">Guardar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

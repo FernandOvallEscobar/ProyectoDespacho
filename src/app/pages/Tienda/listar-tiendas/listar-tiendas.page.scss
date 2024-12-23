@@ -4,4 +4,11 @@
     width: auto;     // Esto permite que el botón tenga el tamaño adecuado para su contenido
   }
   
+  ion-item {
+    color: #e9e9e9;
+  }
   
+
+  .email-label {
+    word-break: break-all;
+  }

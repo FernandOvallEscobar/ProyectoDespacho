@@ -5,6 +5,9 @@ import { addIcons } from 'ionicons';
 import { cube } from 'ionicons/icons';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonInput, IonButton, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonIcon, IonImg, IonGrid, IonText, IonRow, IonCol} from '@ionic/angular/standalone';
 import { TakePhotoService } from 'src/app/service/take-photo.service';
+import { StorageService } from 'src/app/service/storage.service';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-agregar-despachos',
@@ -13,29 +16,19 @@ import { TakePhotoService } from 'src/app/service/take-photo.service';
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonInput, IonButton, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonIcon, IonImg, IonGrid, IonText, IonRow, IonCol, CommonModule, FormsModule, ReactiveFormsModule]
 })
+
 export class AgregarDespachosPage implements OnInit {
 
   photo: string | null = null;
   location: { latitude: number; longitude: number } | null = null;
   address: string | null = null;
+  successMessage: string | null = null;
 
+  form!: FormGroup;
 
-  nombre: string = '';
-  fandeck: number | null = null;
-  minifandeck: number | null = null;
-  rolloSticker: number | null = null;
-  cajaDeCintas: number | null = null;
-  fecha: Date | null = null;
-
-
-
-
-  constructor(private takePhotoService: TakePhotoService) {
+  constructor(private router: Router, private takePhotoService: TakePhotoService, private storage: StorageService) {
     addIcons({ cube });
-   }
-
-
-   form!: FormGroup
+  }
 
   ngOnInit() {
 
@@ -107,14 +100,26 @@ inputFecha() {
 } 
 
 
-
-  //Validación ¿vienen todos los datos?
-  guardar(){
-    if(!this.nombre || !this.fandeck || !this.minifandeck || !this.rolloSticker || !this.cajaDeCintas || !this.fecha){
+// Método asíncrono para guardar los datos del formulario en la base de datos
+  async guardar(){
+    if (!this.form.valid) { // Verifica si el formulario es válido
       alert('Todos los campos son obligatorios.');
-    } else {
-      alert('Despacho guardado exitosamente.');
+      return;
+    } 
+    const despacho = { // Crea un objeto con los datos del formulario
+      nombre: this.form.value.nombre,
+      fandeck: this.form.value.fandeck,
+      minifandeck: this.form.value.minifandeck,
+      rolloSticker: this.form.value.rolloSticker,
+      cajaDeCintas: this.form.value.cajaDeCintas,
+      fecha: this.form.value.fecha,
+      photo: this.photo,
+      location: this.location,
+      address: this.address
     }
+    await this.storage.despachosIn(this.form.value.nombre, this.form.value.fandeck, this.form.value.minifandeck, this.form.value.rolloSticker, this.form.value.cajaDeCintas, this.form.value.fecha); // Guarda los datos en la base de datos
+    this.successMessage = 'Despacho guardado con éxito.';
+    this.router.navigate(['/agregar-despachos']);
   }
 
   async capturePhoto() {
